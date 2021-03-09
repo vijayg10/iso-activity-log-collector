@@ -1,0 +1,1 @@
+# iso-activity-log-collector

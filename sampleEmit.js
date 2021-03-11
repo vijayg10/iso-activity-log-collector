@@ -21,6 +21,12 @@ var config = {
 
 var nrp = new NRP(config)
 
-nrp.emit('iso:sender', { xmlData: xmlData })
+const sampleRedisMessage = {
+  fromComponent: 'senderbank',
+  toComponent: 'mojaloopbank',
+  xmlData: xmlData
+}
+
+nrp.emit('iso:sender', sampleRedisMessage)
 
 nrp.quit()

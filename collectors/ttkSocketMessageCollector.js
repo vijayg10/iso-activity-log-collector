@@ -19,7 +19,6 @@ class TTKSocketMessageCollector {
     }
   }
   notificationEventFunction = (message) => {
-    console.log(message)
     notify.broadcastLog(message)
     store.storeMessage(message)
   }

@@ -4,6 +4,28 @@ services:
     image: "redis:5.0.4-alpine"
     ports:
       - "6379:6379"
-# networks:
-#   default:
-#     name: iso-mojaloop
+  mojaloop-testing-toolkit:
+    image: mojaloop/ml-testing-toolkit:v11.9.0
+    volumes:
+      - "./ttk_spec_files:/opt/mojaloop-testing-toolkit/spec_files"
+    ports:
+      - "5000:5000"
+      - "5050:5050"
+    command:
+      - sh
+      - -c
+      - "npm start"
+  iso-activity-log-collector:
+    image: iso-activity-log-collector:local
+    build:
+     context: .
+     target: builder
+    ports:
+      - "7075:7075"
+    command:
+      - sh
+      - -c
+      - "npm start"
+networks:
+  default:
+    name: iso-mojaloop
